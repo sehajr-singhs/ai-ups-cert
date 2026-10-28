@@ -1,0 +1,35 @@
+\begin{tikzpicture}[
+  font=\footnotesize, >={Stealth[length=1.6mm]}, node distance=4mm and 5mm,
+  blk/.style={draw, rounded corners=1pt, minimum height=6.5mm, minimum width=10mm, align=center, fill=white},
+  ctl/.style={blk, fill=black!5},
+  sum/.style={draw, circle, inner sep=0pt, minimum size=3.4mm},
+  lbl/.style={font=\scriptsize, inner sep=1pt}]
+  % ---------------- UPS internals first
+  \node[blk] (inv) {Inverter};
+  \node[blk, below=6mm of inv] (bat) {Battery\\$e(t)$};
+  \node[ctl, below=8mm of bat] (lpf) {rate-clipped\\low-pass $\tau$, $R$};
+  \node[sum, left=5mm of lpf] (s1) {$+$};
+  \node[ctl, left=5mm of s1] (soc) {SOC loop\\$\mathrm{sat}_c(k_e(e_{\mathrm{ref}}-w))$};
+  \node[ctl, right=5mm of lpf] (sat) {$\mathrm{sat}_{\bar P_b}$};
+  % ---------------- power path
+  \node[blk, right=16mm of inv] (load) {AI campus\\$P_L(t)$};
+  \coordinate (pccc) at ($(soc.west |- inv)+(-9mm,0)$);
+  \node[draw, fill=black, circle, inner sep=1.2pt, label={[lbl]below:PCC}] (pcc) at (pccc) {};
+  \node[blk, left=5mm of pcc] (z) {Feeder\\$R+jX$};
+  \node[blk, left=5mm of z] (grid) {Grid\\$V_s$};
+  \draw (grid) -- (z) -- (pcc);
+  \draw[->] (pcc) -- node[lbl, above]{$P_g$} (inv);
+  \draw[->] (inv) -- (load);
+  \draw[<->] (bat) -- node[lbl, right]{$P_b$} (inv);
+  % ---------------- signals
+  \draw[->] (soc) -- node[lbl, above]{$s$} (s1);
+  \draw[->] (s1) -- node[lbl, above]{$u$} (lpf);
+  \draw[->] (lpf) -- node[lbl, above]{$P_g$} (sat);
+  \draw[->] (sat.north) |- node[lbl, pos=0.3, left]{$P_b$} (bat.east);
+  \draw[->] (load.south) |- ($(s1.south)+(0,-7mm)$) node[lbl, pos=0.6, below]{measured $P_L$} -- (s1.south);
+  \draw[->] (bat.west) -| node[lbl, pos=0.75, left]{$e,\,P_g$} (soc.north);
+  \begin{scope}[on background layer]
+    \node[draw, dashed, rounded corners=2pt, inner sep=2mm, fit=(inv)(bat)(lpf)(soc)(sat),
+          label={[lbl, anchor=north west, xshift=1mm, yshift=-1mm]north west:AI UPS}] {};
+  \end{scope}
+\end{tikzpicture}
