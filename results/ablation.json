@@ -1,0 +1,38 @@
+{
+  "battery": {
+    "Pb_max_MW": 40.284000000000056,
+    "e_lo_MWh": -1.0063935521105185,
+    "e_hi_MWh": 1.0063935521105183
+  },
+  "no_ups": {
+    "max_step_MW": 40.0,
+    "max_grid_ramp_MW_per_s_at_dt": 400.0,
+    "ramp_limit_MW_per_s": 0.16666666666666666,
+    "note": "grid sees P_L directly; a load step is a grid step, so |dP/dt| is unbounded"
+  },
+  "naive_rate_limiter": {
+    "tau_fast_s": 1.0,
+    "n_profiles": 140,
+    "horizon_s": 7200.0,
+    "n_drained": 60,
+    "fastest_drain_profile": {
+      "period_s": 5,
+      "duty": 0.3,
+      "depth_frac": 0.2,
+      "time_to_empty_s": 1031.3,
+      "max_grid_ramp_MW_per_s": 199.92585578142496
+    }
+  },
+  "filter_without_soc_loop": {
+    "n_profiles": 140,
+    "horizon_s": 7200.0,
+    "n_drained": 7,
+    "e_end_min_MWh": -1.0062816820240659,
+    "e_min_MWh": -1.0068578631722456
+  },
+  "certified_controller_same_profiles": {
+    "n_drained": 0,
+    "e_min_MWh": -0.930759704686641,
+    "max_grid_ramp_MW_per_s": 0.1666666666666572
+  }
+}

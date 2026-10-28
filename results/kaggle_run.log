@@ -1,0 +1,67 @@
+[{"stream_name":"stderr","time":8.242087183,"data":"ERROR: pip's dependency resolver does not currently take into account all the packages that are installed. This behaviour is the source of the following dependency conflicts.\n"}
+,{"stream_name":"stderr","time":8.242141738,"data":"dopamine-rl 4.1.2 requires gym\u003c=0.25.2, but you have gym 0.26.2 which is incompatible.\n"}
+,{"stream_name":"stderr","time":8.242148472,"data":"moviepy 1.0.3 requires decorator\u003c5.0,\u003e=4.0.2, but you have decorator 5.3.1 which is incompatible.\n"}
+,{"stream_name":"stdout","time":32.01503787,"data":"22:07:20 search 0.5 3.0 0.15 None None False\n"}
+,{"stream_name":"stdout","time":32.160171168,"data":"22:07:20 search 0.5 3.0 0.5 None None False\n"}
+,{"stream_name":"stdout","time":32.186996479,"data":"22:07:20 search 0.5 3.0 0.05 None None False\n"}
+,{"stream_name":"stdout","time":32.590805576,"data":"22:07:20 search 0.5 6.0 0.5 None None False\n"}
+,{"stream_name":"stdout","time":53.852755112,"data":"22:07:42 search 0.5 6.0 0.05 None None False\n"}
+,{"stream_name":"stdout","time":55.187603853,"data":"22:07:43 search 0.5 6.0 0.15 None None False\n"}
+,{"stream_name":"stdout","time":74.986433716,"data":"22:08:03 search 0.6 3.0 0.5 None None False\n"}
+,{"stream_name":"stdout","time":94.025207594,"data":"22:08:22 search 0.6 3.0 0.15 None None False\n"}
+,{"stream_name":"stdout","time":112.716395945,"data":"22:08:41 search 0.6 3.0 0.05 None None False\n"}
+,{"stream_name":"stdout","time":125.291171961,"data":"22:08:53 search 0.5 10.0 0.5 2.367333333333335 45.283999999999914 True\n"}
+,{"stream_name":"stdout","time":131.059880732,"data":"22:08:59 search 0.6 6.0 0.5 None None False\n"}
+,{"stream_name":"stdout","time":145.981619257,"data":"22:09:14 search 0.6 6.0 0.15 None None False\n"}
+,{"stream_name":"stdout","time":152.062174007,"data":"22:09:20 search 0.6 6.0 0.05 None None False\n"}
+,{"stream_name":"stdout","time":158.145800156,"data":"22:09:26 search 0.5 10.0 0.05 3.5543999999999825 50.283999999999914 True\n"}
+,{"stream_name":"stdout","time":165.779545425,"data":"22:09:34 search 0.5 10.0 0.15 3.2473333333333225 50.283999999999914 True\n"}
+,{"stream_name":"stdout","time":186.044287378,"data":"22:09:54 search 0.75 3.0 0.5 None None False\n"}
+,{"stream_name":"stdout","time":190.032661882,"data":"22:09:58 search 0.6 10.0 0.15 None None False\n"}
+,{"stream_name":"stdout","time":200.590047449,"data":"22:10:08 search 0.6 10.0 0.5 2.272058726618506 43.28400000000017 True\n"}
+,{"stream_name":"stdout","time":204.979444672,"data":"22:10:13 search 0.75 3.0 0.15 None None False\n"}
+,{"stream_name":"stdout","time":206.488562842,"data":"22:10:14 search 0.6 10.0 0.05 2.9603200000000025 49.28399999999997 True\n"}
+,{"stream_name":"stdout","time":209.94812673,"data":"22:10:18 search 0.75 3.0 0.05 None None False\n"}
+,{"stream_name":"stdout","time":218.274833816,"data":"22:10:26 search 0.75 6.0 0.15 2.2064729308817346 41.48399999999996 True\n"}
+,{"stream_name":"stdout","time":222.057374514,"data":"22:10:30 search 0.75 6.0 0.5 2.966652151999149 42.68399999999986 True\n"}
+,{"stream_name":"stdout","time":229.390358209,"data":"22:10:37 search 0.75 6.0 0.05 2.1328528421695436 41.802858962493865 True\n"}
+,{"stream_name":"stdout","time":232.467575024,"data":"22:10:40 search 0.75 10.0 0.15 2.038134257278509 40.484000000000016 True\n"}
+,{"stream_name":"stdout","time":233.302189807,"data":"22:10:41 search 0.75 10.0 0.05 2.0127871042210366 40.284000000000056 True\n"}
+,{"stream_name":"stdout","time":263.057760401,"data":"22:11:11 search 0.9 3.0 0.15 2.712480000000002 41.39502249921055 True\n"}
+,{"stream_name":"stdout","time":265.376947338,"data":"22:11:13 search 0.9 3.0 0.05 2.508480000000002 41.07554484349429 True\n"}
+,{"stream_name":"stdout","time":291.527294102,"data":"22:11:39 search 0.9 6.0 0.15 2.5430471739024405 40.883999999999936 True\n"}
+,{"stream_name":"stdout","time":297.716713715,"data":"22:11:46 search 0.75 10.0 0.5 2.5004000000000017 42.08399999999998 True\n"}
+,{"stream_name":"stdout","time":303.754698224,"data":"22:11:52 search 0.9 6.0 0.5 2.952480000000002 41.68400000000006 True\n"}
+,{"stream_name":"stdout","time":303.907348479,"data":"22:11:52 search 0.9 6.0 0.05 2.4244800000000017 40.33350408061112 True\n"}
+,{"stream_name":"stdout","time":315.007365004,"data":"22:12:03 search 0.9 10.0 0.05 2.415344525065244 40.284000000000056 True\n"}
+,{"stream_name":"stdout","time":317.890621111,"data":"22:12:06 search 0.9 10.0 0.15 2.445761108734211 40.484000000000016 True\n"}
+,{"stream_name":"stdout","time":327.931622462,"data":"22:12:16 search 0.9 10.0 0.5 2.712480000000002 41.39502249921055 True\n"}
+,{"stream_name":"stdout","time":340.781099569,"data":"22:12:29 search 0.9 3.0 0.5 3.6323857596321183 42.08399999999998 True\n"}
+,{"stream_name":"stdout","time":349.775158916,"data":"22:12:38 search 1.0 3.0 0.05 2.7175123430380124 40.477390456823066 True\n"}
+,{"stream_name":"stdout","time":367.940023312,"data":"22:12:56 search 1.0 6.0 0.15 2.781898121169792 40.783267804285536 True\n"}
+,{"stream_name":"stdout","time":380.682250919,"data":"22:13:09 search 1.0 6.0 0.05 2.6938666666666684 40.33350408061112 True\n"}
+,{"stream_name":"stdout","time":381.285377647,"data":"22:13:09 search 1.0 3.0 0.15 2.934564646960802 41.08400000000004 True\n"}
+,{"stream_name":"stdout","time":392.011814191,"data":"22:13:20 search 1.0 10.0 0.15 2.6938666666666684 40.284000000000056 True\n"}
+,{"stream_name":"stdout","time":397.418991721,"data":"22:13:25 search 1.0 6.0 0.5 3.126779812456644 41.48399999999996 True\n"}
+,{"stream_name":"stdout","time":400.234965908,"data":"22:13:28 search 1.0 10.0 0.05 2.683716138961382 40.284000000000056 True\n"}
+,{"stream_name":"stdout","time":402.043031606,"data":"22:13:30 search 1.0 3.0 0.5 3.565758190562924 41.68400000000006 True\n"}
+,{"stream_name":"stdout","time":422.425005466,"data":"22:13:50 search 1.0 10.0 0.5 2.934564646960802 41.08400000000004 True\n"}
+,{"stream_name":"stdout","time":422.437555851,"data":"22:13:50 best 0.75 10.0 0.05 2.0127871042210366\n"}
+,{"stream_name":"stdout","time":489.898501842,"data":"22:14:58 nominal certified {'proved': True, 'boxes': 27230, 'max_depth': 40, 'seconds': 1.4048551019998285} 2.0127871042210366 40.284000000000056\n"}
+,{"stream_name":"stdout","time":510.783960272,"data":"22:15:19 sizing 5.0 4.025574208442073 40.284000000000056\n"}
+,{"stream_name":"stdout","time":510.923285039,"data":"22:15:19 sizing 2.0 10.063935521105186 40.284000000000056\n"}
+,{"stream_name":"stdout","time":510.9511034,"data":"22:15:19 sizing 20.0 1.0063935521105183 40.284000000000056\n"}
+,{"stream_name":"stdout","time":510.958734183,"data":"22:15:19 sizing 10.0 2.0127871042210366 40.284000000000056\n"}
+,{"stream_name":"stdout","time":520.64084602,"data":"22:15:29 sizing 40.0 0.5031967760552591 40.284000000000056\n"}
+,{"stream_name":"stdout","time":524.509149587,"data":"22:15:32 family sims done\n"}
+,{"stream_name":"stdout","time":539.454325031,"data":"22:15:47 sims done\n"}
+,{"stream_name":"stdout","time":552.336382792,"data":"22:16:00 ablation done {'period_s': 5, 'duty': 0.3, 'depth_frac': 0.2, 'time_to_empty_s': 1031.3, 'max_grid_ramp_MW_per_s': 199.92585578142496}\n"}
+,{"stream_name":"stdout","time":591.483706578,"data":"22:16:39 voltage done\n"}
+,{"stream_name":"stdout","time":600.486613834,"data":"22:16:48 done 590.675683389\n"}
+,{"stream_name":"stderr","time":604.31610465,"data":"/usr/local/lib/python3.13/dist-packages/mistune.py:435: SyntaxWarning: invalid escape sequence '\\|'\n"}
+,{"stream_name":"stderr","time":604.316164338,"data":"  cells[i][c] = re.sub('\\\\\\\\\\|', '|', cell)\n"}
+,{"stream_name":"stderr","time":604.627600833,"data":"/usr/local/lib/python3.13/dist-packages/nbconvert/filters/filter_links.py:36: SyntaxWarning: invalid escape sequence '\\_'\n"}
+,{"stream_name":"stderr","time":604.627636602,"data":"  text = re.sub(r'_', '\\_', text) # Escape underscores in display text\n"}
+,{"stream_name":"stderr","time":605.590388557,"data":"[NbConvertApp] Converting notebook __script__.ipynb to html\n"}
+,{"stream_name":"stderr","time":606.266307763,"data":"[NbConvertApp] Writing 306154 bytes to __results__.html\n"}
+]

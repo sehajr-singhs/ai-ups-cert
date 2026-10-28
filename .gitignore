@@ -1,0 +1,15 @@
+TASK.md
+RESULT.md
+.venv/
+__pycache__/
+*.aux
+*.log
+*.out
+results_quick/
+figures_quick/
+kaggle/out/
+kaggle/kernel/
+*.toc
+*.synctex.gz
+paper/testdiag.*
+!results/kaggle_run.log

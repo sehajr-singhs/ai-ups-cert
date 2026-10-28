@@ -1,0 +1,56 @@
+{
+  "feeder": {
+    "V_kV": 69.0,
+    "length_km": 10.0,
+    "R_ohm": 0.5,
+    "X_ohm": 3.5,
+    "r_pu": 0.010501995379122032,
+    "x_pu": 0.07351396765385423,
+    "pf_no_ups": 0.95
+  },
+  "with_ups": {
+    "P_range_MW": [
+      59.81459652367976,
+      100.18540347632026
+    ],
+    "Q_MVAr": 0.0,
+    "V_range_pu": [
+      0.9865444686551751,
+      0.9926904757741593
+    ],
+    "max_abs_dev_pu": 0.013455531344824911,
+    "dVdP_range_pu_per_MW": [
+      -0.00016495609283177253,
+      -0.00013979652672819058
+    ],
+    "dVdt_bound_pu_per_s": 2.7492682138628752e-05,
+    "dV_bound_per_min_pu": 0.0016495609283177252,
+    "lin_error_bound_pu": 0.0029351248362572417
+  },
+  "without_ups": {
+    "P_range_MW": [
+      60.0,
+      100.0
+    ],
+    "V_range_pu": [
+      0.9612792200127939,
+      0.9778043935041281
+    ],
+    "max_abs_dev_pu": 0.03872077998720613,
+    "step_dV_pu_for_full_load_step": 0.016525173491333423,
+    "lin_error_bound_pu": 0.004059378418434846
+  },
+  "band_pu": 0.05,
+  "pandapower": {
+    "n_points": 41,
+    "P_range_MW": [
+      59.81459652367976,
+      100.18540347632026
+    ],
+    "max_abs_diff_vs_exact_unity_pf": 1.4432899320127035e-15,
+    "max_abs_diff_vs_exact_pf": 6.713851696815709e-12,
+    "max_abs_diff_vs_linear_unity_pf": 0.002934064901185196,
+    "max_abs_diff_vs_linear_pf": 0.004071845735282187
+  },
+  "figure_profile": "checkpoint every 300 s, 40 s dip to idle"
+}

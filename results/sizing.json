@@ -1,0 +1,355 @@
+{
+  "rows": [
+    {
+      "R_mw_per_min": 2.0,
+      "best": {
+        "alpha": 0.75,
+        "c": 10.0,
+        "ke_frac": 0.05,
+        "proved": true,
+        "tau_s": 900.0,
+        "energy_window_MWh": 10.063935521105186,
+        "Pb_max_MW": 40.284000000000056,
+        "bab": {
+          "proved": true,
+          "boxes": 27230,
+          "max_depth": 40,
+          "seconds": 3.2362076899996737
+        }
+      },
+      "candidates": [
+        {
+          "alpha": 0.75,
+          "c": 10.0,
+          "ke_frac": 0.05,
+          "proved": true,
+          "tau_s": 900.0,
+          "energy_window_MWh": 10.063935521105186,
+          "Pb_max_MW": 40.284000000000056,
+          "bab": {
+            "proved": true,
+            "boxes": 27230,
+            "max_depth": 40,
+            "seconds": 3.2362076899996737
+          }
+        },
+        {
+          "alpha": 0.75,
+          "c": 10.0,
+          "ke_frac": 0.15,
+          "proved": true,
+          "tau_s": 900.0,
+          "energy_window_MWh": 10.190671286392547,
+          "Pb_max_MW": 40.484000000000016,
+          "bab": {
+            "proved": true,
+            "boxes": 36038,
+            "max_depth": 56,
+            "seconds": 3.2448015769999756
+          }
+        },
+        {
+          "alpha": 0.75,
+          "c": 6.0,
+          "ke_frac": 0.05,
+          "proved": true,
+          "tau_s": 900.0,
+          "energy_window_MWh": 10.664264210847719,
+          "Pb_max_MW": 41.802858962493865,
+          "bab": {
+            "proved": true,
+            "boxes": 28400,
+            "max_depth": 50,
+            "seconds": 3.064815560999591
+          }
+        }
+      ],
+      "lower_bound": {
+        "Pb_MW": 40.0,
+        "energy_MWh": 7.017543859649124
+      },
+      "energy_ratio_to_lower_bound": 1.4341108117574888
+    },
+    {
+      "R_mw_per_min": 5.0,
+      "best": {
+        "alpha": 0.75,
+        "c": 10.0,
+        "ke_frac": 0.05,
+        "proved": true,
+        "tau_s": 360.0,
+        "energy_window_MWh": 4.025574208442073,
+        "Pb_max_MW": 40.284000000000056,
+        "bab": {
+          "proved": true,
+          "boxes": 27230,
+          "max_depth": 40,
+          "seconds": 3.2241910869995536
+        }
+      },
+      "candidates": [
+        {
+          "alpha": 0.75,
+          "c": 10.0,
+          "ke_frac": 0.05,
+          "proved": true,
+          "tau_s": 360.0,
+          "energy_window_MWh": 4.025574208442073,
+          "Pb_max_MW": 40.284000000000056,
+          "bab": {
+            "proved": true,
+            "boxes": 27230,
+            "max_depth": 40,
+            "seconds": 3.2241910869995536
+          }
+        },
+        {
+          "alpha": 0.75,
+          "c": 10.0,
+          "ke_frac": 0.15,
+          "proved": true,
+          "tau_s": 360.0,
+          "energy_window_MWh": 4.076268514557018,
+          "Pb_max_MW": 40.484000000000016,
+          "bab": {
+            "proved": true,
+            "boxes": 36038,
+            "max_depth": 56,
+            "seconds": 3.2466032599999153
+          }
+        },
+        {
+          "alpha": 0.75,
+          "c": 6.0,
+          "ke_frac": 0.05,
+          "proved": true,
+          "tau_s": 360.0,
+          "energy_window_MWh": 4.265705684339087,
+          "Pb_max_MW": 41.802858962493865,
+          "bab": {
+            "proved": true,
+            "boxes": 28400,
+            "max_depth": 50,
+            "seconds": 3.0390949540000065
+          }
+        }
+      ],
+      "lower_bound": {
+        "Pb_MW": 40.0,
+        "energy_MWh": 2.807017543859649
+      },
+      "energy_ratio_to_lower_bound": 1.4341108117574886
+    },
+    {
+      "R_mw_per_min": 10.0,
+      "best": {
+        "alpha": 0.75,
+        "c": 10.0,
+        "ke_frac": 0.05,
+        "proved": true,
+        "tau_s": 180.0,
+        "energy_window_MWh": 2.0127871042210366,
+        "Pb_max_MW": 40.284000000000056,
+        "bab": {
+          "proved": true,
+          "boxes": 27230,
+          "max_depth": 40,
+          "seconds": 3.260307366999996
+        }
+      },
+      "candidates": [
+        {
+          "alpha": 0.75,
+          "c": 10.0,
+          "ke_frac": 0.05,
+          "proved": true,
+          "tau_s": 180.0,
+          "energy_window_MWh": 2.0127871042210366,
+          "Pb_max_MW": 40.284000000000056,
+          "bab": {
+            "proved": true,
+            "boxes": 27230,
+            "max_depth": 40,
+            "seconds": 3.260307366999996
+          }
+        },
+        {
+          "alpha": 0.75,
+          "c": 10.0,
+          "ke_frac": 0.15,
+          "proved": true,
+          "tau_s": 180.0,
+          "energy_window_MWh": 2.038134257278509,
+          "Pb_max_MW": 40.484000000000016,
+          "bab": {
+            "proved": true,
+            "boxes": 36038,
+            "max_depth": 56,
+            "seconds": 3.2662579670002287
+          }
+        },
+        {
+          "alpha": 0.75,
+          "c": 6.0,
+          "ke_frac": 0.05,
+          "proved": true,
+          "tau_s": 180.0,
+          "energy_window_MWh": 2.1328528421695436,
+          "Pb_max_MW": 41.802858962493865,
+          "bab": {
+            "proved": true,
+            "boxes": 28400,
+            "max_depth": 50,
+            "seconds": 3.069348831999946
+          }
+        }
+      ],
+      "lower_bound": {
+        "Pb_MW": 40.0,
+        "energy_MWh": 1.4035087719298245
+      },
+      "energy_ratio_to_lower_bound": 1.4341108117574886
+    },
+    {
+      "R_mw_per_min": 20.0,
+      "best": {
+        "alpha": 0.75,
+        "c": 10.0,
+        "ke_frac": 0.05,
+        "proved": true,
+        "tau_s": 90.0,
+        "energy_window_MWh": 1.0063935521105183,
+        "Pb_max_MW": 40.284000000000056,
+        "bab": {
+          "proved": true,
+          "boxes": 27230,
+          "max_depth": 40,
+          "seconds": 3.23818068000071
+        }
+      },
+      "candidates": [
+        {
+          "alpha": 0.75,
+          "c": 10.0,
+          "ke_frac": 0.05,
+          "proved": true,
+          "tau_s": 90.0,
+          "energy_window_MWh": 1.0063935521105183,
+          "Pb_max_MW": 40.284000000000056,
+          "bab": {
+            "proved": true,
+            "boxes": 27230,
+            "max_depth": 40,
+            "seconds": 3.23818068000071
+          }
+        },
+        {
+          "alpha": 0.75,
+          "c": 10.0,
+          "ke_frac": 0.15,
+          "proved": true,
+          "tau_s": 90.0,
+          "energy_window_MWh": 1.0190671286392545,
+          "Pb_max_MW": 40.484000000000016,
+          "bab": {
+            "proved": true,
+            "boxes": 36038,
+            "max_depth": 56,
+            "seconds": 3.27007616700007
+          }
+        },
+        {
+          "alpha": 0.75,
+          "c": 6.0,
+          "ke_frac": 0.05,
+          "proved": true,
+          "tau_s": 90.0,
+          "energy_window_MWh": 1.0664264210847718,
+          "Pb_max_MW": 41.802858962493865,
+          "bab": {
+            "proved": true,
+            "boxes": 28400,
+            "max_depth": 50,
+            "seconds": 3.068937359000074
+          }
+        }
+      ],
+      "lower_bound": {
+        "Pb_MW": 40.0,
+        "energy_MWh": 0.7017543859649122
+      },
+      "energy_ratio_to_lower_bound": 1.4341108117574886
+    },
+    {
+      "R_mw_per_min": 40.0,
+      "best": {
+        "alpha": 0.75,
+        "c": 10.0,
+        "ke_frac": 0.05,
+        "proved": true,
+        "tau_s": 45.0,
+        "energy_window_MWh": 0.5031967760552591,
+        "Pb_max_MW": 40.284000000000056,
+        "bab": {
+          "proved": true,
+          "boxes": 27230,
+          "max_depth": 40,
+          "seconds": 1.5544883830003755
+        }
+      },
+      "candidates": [
+        {
+          "alpha": 0.75,
+          "c": 10.0,
+          "ke_frac": 0.05,
+          "proved": true,
+          "tau_s": 45.0,
+          "energy_window_MWh": 0.5031967760552591,
+          "Pb_max_MW": 40.284000000000056,
+          "bab": {
+            "proved": true,
+            "boxes": 27230,
+            "max_depth": 40,
+            "seconds": 1.5544883830003755
+          }
+        },
+        {
+          "alpha": 0.75,
+          "c": 10.0,
+          "ke_frac": 0.15,
+          "proved": true,
+          "tau_s": 45.0,
+          "energy_window_MWh": 0.5095335643196273,
+          "Pb_max_MW": 40.484000000000016,
+          "bab": {
+            "proved": true,
+            "boxes": 36038,
+            "max_depth": 56,
+            "seconds": 1.5128789609992737
+          }
+        },
+        {
+          "alpha": 0.75,
+          "c": 6.0,
+          "ke_frac": 0.05,
+          "proved": true,
+          "tau_s": 45.0,
+          "energy_window_MWh": 0.5332132105423859,
+          "Pb_max_MW": 41.802858962493865,
+          "bab": {
+            "proved": true,
+            "boxes": 28400,
+            "max_depth": 50,
+            "seconds": 1.4121904240003005
+          }
+        }
+      ],
+      "lower_bound": {
+        "Pb_MW": 40.0,
+        "energy_MWh": 0.3508771929824561
+      },
+      "energy_ratio_to_lower_bound": 1.4341108117574886
+    }
+  ],
+  "note": "best over the top-3 designs of the nominal search, each BaB-certified at that R"
+}
