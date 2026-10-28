@@ -1,0 +1,150 @@
+<!doctype html>
+<html lang="en">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<title>Certified AI UPS</title>
+<meta name="description" content="A proof that an AI training campus behind a battery UPS shows the grid a bounded ramp and a steady voltage, for every load profile in range.">
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link href="https://fonts.googleapis.com/css2?family=Source+Code+Pro&display=swap" rel="stylesheet">
+<style>
+  :root { --paper:#fff; --ink:#111; --muted:#595959; --faint:#c9c9c9; --red:#d0141e; --green:#0cab2c; --amber:#b06300;
+          --mono:"Source Code Pro", ui-monospace, Menlo, monospace; --lh:1.8; }
+  @media (prefers-color-scheme: dark) {
+    :root:not([data-theme="light"]) { --paper:#0a0a0a; --ink:#f2f2f2; --muted:#a6a6a6; --faint:#3d3d3d; }
+  }
+  :root[data-theme="dark"] { --paper:#0a0a0a; --ink:#f2f2f2; --muted:#a6a6a6; --faint:#3d3d3d; }
+  * { box-sizing:border-box; }
+  html { -webkit-text-size-adjust:100%; background:var(--paper); }
+  body { margin:0; background:var(--paper); color:var(--ink); font-family:var(--mono); font-size:15px; line-height:var(--lh); }
+  b, strong, h1, h2, h3, th { font-weight:400; }
+  a { color:inherit; }
+  .doc { max-width:860px; margin:0 auto; padding:56px 24px 120px; }
+  .rule { overflow:hidden; white-space:nowrap; color:var(--faint); user-select:none; margin:2.2em 0 1.2em; }
+  .rule::before { content:"================================================================================================================================================"; }
+  .caps { text-transform:uppercase; }
+  .muted { color:var(--muted); }
+  .addr { text-transform:uppercase; color:var(--muted); }
+  h1 { font-size:inherit; text-transform:uppercase; margin:1.8em 0 .2em; }
+  h2 { font-size:inherit; text-transform:uppercase; margin:0; }
+  p { margin:0 0 1em; max-width:74ch; }
+  .cta { display:inline-block; text-transform:uppercase; border:1px solid var(--ink); padding:.15em 1ch; text-decoration:none; margin:.4em 1ch .4em 0; }
+  .cta:hover { background:var(--ink); color:var(--paper); }
+  .sched { width:100%; border-collapse:collapse; margin:1em 0; }
+  .sched td, .sched th { text-align:left; padding:0 2ch 0 0; vertical-align:top; }
+  .sched th { text-transform:uppercase; color:var(--muted); border-bottom:1px dashed var(--faint); }
+  .sched td.n { text-align:right; white-space:nowrap; }
+  .exhibit .sub { text-transform:uppercase; color:var(--muted); }
+  .exhibit .tag { display:inline-block; text-transform:uppercase; color:var(--red); }
+  figure { margin:1em 0 .6em; border:1px solid var(--faint); padding:10px; background:#fff; }
+  figure img { width:100%; display:block; }
+  figcaption { font-size:13px; color:var(--muted); margin-top:.6em; }
+  .claim { border-left:2px solid var(--ink); padding:.2em 0 .2em 2ch; margin:1em 0; }
+  .claim .k { text-transform:uppercase; color:var(--muted); }
+  .ok { color:var(--green); } .bad { color:var(--red); } .warn { color:var(--amber); }
+  pre { font-family:var(--mono); font-size:13px; line-height:1.6; overflow-x:auto; margin:1em 0; }
+  .toggle { float:right; background:none; border:1px solid var(--faint); color:var(--muted); font:inherit; font-size:12px; padding:0 1ch; cursor:pointer; text-transform:uppercase; }
+  footer { margin-top:3em; color:var(--muted); font-size:13px; }
+  @media (max-width:560px) { .doc { padding:32px 16px 80px; } body { font-size:14px; } .sched td, .sched th { padding-right:1ch; } }
+</style>
+</head>
+<body>
+<div class="doc">
+
+<button class="toggle" id="t" type="button">Theme</button>
+<div class="addr">Department of Grid-Side Guarantees<br>Queens, New York</div>
+
+<h1>Certified grid-side behavior for an AI UPS</h1>
+<p>An AI training campus steps its power by 40 MW in an instant, over and over. A battery and inverter between the campus and the grid can hide that. This is a proof that it does: <strong>for every load profile in range</strong>, the grid sees a bounded ramp, the voltage stays in its band, and the battery never saturates or runs empty.</p>
+<p class="muted">Public, assumed-parameter model. Not ON.energy hardware, data or controller.</p>
+<a class="cta" href="paper.pdf">Read the paper ↓</a><a class="cta" href="https://github.com/sehajr-singhs/ai-ups-cert">Code</a>
+
+<table class="sched">
+  <tr><th>Item</th><th>Value</th></tr>
+  <tr><td>Campus load</td><td>Any measurable profile in [60, 100] MW, steps allowed</td></tr>
+  <tr><td>Grid ramp limit</td><td>10 MW/min (swept 2 to 40)</td></tr>
+  <tr><td>Proof method</td><td>Interval branch-and-bound, outward rounding: 27,230 boxes, depth 40, 1.4 s</td></tr>
+  <tr><td>Battery needed</td><td>40.28 MW, 2.013 MWh usable (1.43× the lower bound for any controller)</td></tr>
+  <tr><td>Worst voltage</td><td>1.35% deviation against a 5% band, never steps</td></tr>
+  <tr><td>Status</td><td>Proved on a public model. Code tested, not formally verified.</td></tr>
+</table>
+
+<div class="rule"></div>
+<section class="exhibit">
+  <h2>The claim</h2>
+  <div class="sub">Four statements, each proved for every admissible load</div>
+  <div class="claim"><span class="k">Proposition 1 · battery</span><br>The set S, a 32-sided polygon in (grid power, stored energy), is forward invariant. So the battery power stays within 40.28 MW, stored energy within ±1.006 MWh, and grid power within [59.81, 100.19] MW.</div>
+  <div class="claim"><span class="k">Theorem 1 · ramp</span><br>The grid draws exactly P<sub>g</sub>, and P<sub>g</sub> never changes faster than R. The clip does it by construction, but only because Proposition 1 keeps the battery from saturating.</div>
+  <div class="claim"><span class="k">Corollary 1 · voltage</span><br>PCC voltage stays in [0.9865, 0.9927] pu and moves at most 0.165% per minute. The linearization is within 2.94×10⁻³ pu of the exact formula, which matches pandapower AC to 6.7×10⁻¹² pu.</div>
+  <div class="claim"><span class="k">Proposition 2 · lower bound</span><br>Any causal controller holding ramp R needs at least 40 MW and ΔP²/(2ηR) of energy: 1.404 MWh at 10 MW/min.</div>
+</section>
+
+<div class="rule"></div>
+<section class="exhibit">
+  <h2>Exhibit A: worst-case loads</h2>
+  <div class="sub">What the campus does, what the grid sees</div>
+  <figure><img src="fig_a_worst_profiles.png" alt="Load and grid power on three worst-case profiles"><figcaption>Campus load (steps) against grid power (bounded ramp) on the three hardest profiles found.</figcaption></figure>
+</section>
+
+<div class="rule"></div>
+<section class="exhibit">
+  <h2>Exhibit B: the certified set</h2>
+  <div class="sub">32 faces, every one proved by branch-and-bound</div>
+  <figure><img src="fig_b_invariant_set.png" alt="Certified invariant polygon with simulated trajectories inside"><figcaption>The invariant set S in (grid power, stored energy), with simulated trajectories that stay inside. A greedy adversary reached ±1.000 MWh against the certified ±1.006, so the set is close to tight.</figcaption></figure>
+</section>
+
+<div class="rule"></div>
+<section class="exhibit">
+  <h2>Exhibit C: how big a battery</h2>
+  <div class="sub">Each row re-proved at its own ramp limit</div>
+  <table class="sched">
+    <tr><th>Ramp limit</th><th class="n">Usable energy</th><th class="n">Power</th><th class="n">Lower bound</th></tr>
+    <tr><td>2 MW/min</td><td class="n">10.064 MWh</td><td class="n">40.28 MW</td><td class="n">7.018 MWh</td></tr>
+    <tr><td>5 MW/min</td><td class="n">4.026 MWh</td><td class="n">40.28 MW</td><td class="n">2.807 MWh</td></tr>
+    <tr><td>10 MW/min</td><td class="n">2.013 MWh</td><td class="n">40.28 MW</td><td class="n">1.404 MWh</td></tr>
+    <tr><td>20 MW/min</td><td class="n">1.006 MWh</td><td class="n">40.28 MW</td><td class="n">0.702 MWh</td></tr>
+    <tr><td>40 MW/min</td><td class="n">0.503 MWh</td><td class="n">40.28 MW</td><td class="n">0.351 MWh</td></tr>
+  </table>
+  <figure><img src="fig_c_battery_vs_ramp.png" alt="Certified battery energy versus ramp limit, with the lower bound"><figcaption>Energy scales as 1/R. The certified design stays at 1.43× the bound for any controller.</figcaption></figure>
+</section>
+
+<div class="rule"></div>
+<section class="exhibit">
+  <h2>Exhibit D: the feeder voltage</h2>
+  <div class="sub">With and without the UPS</div>
+  <figure><img src="fig_d_pcc_voltage.png" alt="PCC voltage with and without the UPS"><figcaption>On this assumed feeder both stay inside the band. Without the UPS a 40 MW step moves the voltage 1.65% instantly; with it the voltage never steps.</figcaption></figure>
+</section>
+
+<div class="rule"></div>
+<section class="exhibit">
+  <h2>Exhibit E: why each piece is there</h2>
+  <div class="sub">Same battery, 140 burst trains</div>
+  <pre>
+CONTROLLER                              BATTERY EMPTIED      GRID SEES
+no UPS                                  n/a                  <span class="bad">400 MW/s steps</span>
+plain ramp limiter, no charge loop      <span class="bad">60 of 140</span>            <span class="bad">199.9 MW/s after empty</span>
+certified filter, charge loop removed   <span class="warn">7 of 140</span>             ramp limit lost once empty
+certified controller                    <span class="ok">0 of 140</span>             <span class="ok">≤ 10 MW/min, always</span></pre>
+  <figure><img src="fig_e_ablation.png" alt="A plain ramp limiter draining the battery on a burst profile"><figcaption>The fastest failure: period 5 s, duty 0.3, depth 20%. The plain limiter runs empty after 17.2 minutes.</figcaption></figure>
+</section>
+
+<div class="rule"></div>
+<section class="exhibit">
+  <h2>What this does not prove</h2>
+  <p>It's a public model with assumed parameters, not anyone's real hardware. It covers the grid-side power and a linearized feeder voltage, not fast inverter dynamics, faults or protection. 16 of 45 designs in the search got no certificate, which is a limit of the search, not a proof that none exists. The branch-and-bound starts from a padded floating-point polygon, and the code is tested, not formally verified.</p>
+</section>
+
+<footer>Sehaj Randhir Singh · Queens High School for the Sciences · <a href="https://sehajr-singhs.github.io">sehajr-singhs.github.io</a></footer>
+</div>
+<script>
+  (function(){ var r=document.documentElement, k='theme';
+    try { var s=localStorage.getItem(k); if(s) r.setAttribute('data-theme',s); } catch(e){}
+    document.getElementById('t').onclick=function(){
+      var d=r.getAttribute('data-theme')||(matchMedia('(prefers-color-scheme: dark)').matches?'dark':'light');
+      var n=d==='dark'?'light':'dark'; r.setAttribute('data-theme',n); try{localStorage.setItem(k,n);}catch(e){}
+    };
+  })();
+</script>
+</body>
+</html>
