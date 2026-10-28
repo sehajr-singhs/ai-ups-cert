@@ -9,142 +9,343 @@
 <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
 <link href="https://fonts.googleapis.com/css2?family=Source+Code+Pro&display=swap" rel="stylesheet">
 <style>
-  :root { --paper:#fff; --ink:#111; --muted:#595959; --faint:#c9c9c9; --red:#d0141e; --green:#0cab2c; --amber:#b06300;
+  :root { --paper:#fff; --ink:#111; --muted:#595959; --faint:#c9c9c9; --gutter:#8a8a8a; --red:#d0141e; --green:#0cab2c; --amber:#b06300;
           --mono:"Source Code Pro", ui-monospace, Menlo, monospace; --lh:1.8; }
-  @media (prefers-color-scheme: dark) {
-    :root:not([data-theme="light"]) { --paper:#0a0a0a; --ink:#f2f2f2; --muted:#a6a6a6; --faint:#3d3d3d; }
-  }
-  :root[data-theme="dark"] { --paper:#0a0a0a; --ink:#f2f2f2; --muted:#a6a6a6; --faint:#3d3d3d; }
   * { box-sizing:border-box; }
   html { -webkit-text-size-adjust:100%; background:var(--paper); }
   body { margin:0; background:var(--paper); color:var(--ink); font-family:var(--mono); font-size:15px; line-height:var(--lh); }
   b, strong, h1, h2, h3, th { font-weight:400; }
   a { color:inherit; }
-  .doc { max-width:860px; margin:0 auto; padding:56px 24px 120px; }
-  .rule { overflow:hidden; white-space:nowrap; color:var(--faint); user-select:none; margin:2.2em 0 1.2em; }
-  .rule::before { content:"================================================================================================================================================"; }
-  .caps { text-transform:uppercase; }
-  .muted { color:var(--muted); }
-  .addr { text-transform:uppercase; color:var(--muted); }
-  h1 { font-size:inherit; text-transform:uppercase; margin:1.8em 0 .2em; }
+  .doc { max-width:900px; margin:0 auto; padding:56px 24px 120px; }
+  .rule { overflow:hidden; white-space:nowrap; color:var(--faint); user-select:none; margin:2.4em 0 1.2em; line-height:1; }
+  .rule::before { content:"================================================================================================================================================================"; }
+  .addr { text-transform:uppercase; }
+  h1 { font-size:inherit; text-transform:uppercase; margin:1.6em 0 .4em; }
   h2 { font-size:inherit; text-transform:uppercase; margin:0; }
-  p { margin:0 0 1em; max-width:74ch; }
-  .cta { display:inline-block; text-transform:uppercase; border:1px solid var(--ink); padding:.15em 1ch; text-decoration:none; margin:.4em 1ch .4em 0; }
+  p { margin:0 0 1em; max-width:76ch; }
+  .sub { text-transform:uppercase; color:var(--muted); }
+  .tag { text-transform:uppercase; color:var(--red); }
+  .cta { display:inline-block; text-transform:uppercase; border:1px solid var(--ink); padding:.1em 1ch; text-decoration:none; margin:.3em 1ch .3em 0; }
   .cta:hover { background:var(--ink); color:var(--paper); }
-  .sched { width:100%; border-collapse:collapse; margin:1em 0; }
-  .sched td, .sched th { text-align:left; padding:0 2ch 0 0; vertical-align:top; }
-  .sched th { text-transform:uppercase; color:var(--muted); border-bottom:1px dashed var(--faint); }
-  .sched td.n { text-align:right; white-space:nowrap; }
-  .exhibit .sub { text-transform:uppercase; color:var(--muted); }
-  .exhibit .tag { display:inline-block; text-transform:uppercase; color:var(--red); }
-  figure { margin:1em 0 .6em; border:1px solid var(--faint); padding:10px; background:#fff; }
-  figure img { width:100%; display:block; }
-  figcaption { font-size:13px; color:var(--muted); margin-top:.6em; }
-  .claim { border-left:2px solid var(--ink); padding:.2em 0 .2em 2ch; margin:1em 0; }
-  .claim .k { text-transform:uppercase; color:var(--muted); }
-  .ok { color:var(--green); } .bad { color:var(--red); } .warn { color:var(--amber); }
-  pre { font-family:var(--mono); font-size:13px; line-height:1.6; overflow-x:auto; margin:1em 0; }
-  .toggle { float:right; background:none; border:1px solid var(--faint); color:var(--muted); font:inherit; font-size:12px; padding:0 1ch; cursor:pointer; text-transform:uppercase; }
+  table.t { border-collapse:collapse; margin:1em 0; width:100%; }
+  table.t td, table.t th { text-align:left; padding:0 2ch 0 0; vertical-align:top; }
+  table.t th { text-transform:uppercase; border-bottom:1px solid var(--ink); }
+  table.t td.n, table.t th.n { text-align:right; white-space:nowrap; }
+  .ctrl { text-transform:uppercase; user-select:none; margin:.6em 0; }
+  .ctrl button { font:inherit; color:inherit; background:none; border:0; padding:0 .5ch; cursor:pointer; text-transform:uppercase; }
+  .ctrl button:hover { outline:1px solid var(--ink); outline-offset:-1px; }
+  .ctrl button.on { background:var(--ink); color:var(--paper); }
+  svg { display:block; width:100%; height:auto; overflow:visible; }
+  svg text { font-family:var(--mono); font-size:11px; fill:var(--ink); }
+  .live { display:grid; grid-template-columns:repeat(4,1fr); gap:0 2ch; margin:.6em 0; }
+  .live div span { display:block; color:var(--muted); text-transform:uppercase; font-size:12px; }
+  .ok { color:var(--green); } .bad { color:var(--red); } .warn { color:var(--amber); } .mut { color:var(--muted); }
+  pre { font-family:var(--mono); font-size:13px; line-height:1.55; overflow-x:auto; margin:1em 0; }
+  .trace { height:15.5em; overflow:hidden; border-top:1px solid var(--faint); border-bottom:1px solid var(--faint); font-size:13px; line-height:1.55; padding:.3em 0; }
+  .trace div { white-space:pre; }
+  .claim { border-left:2px solid var(--ink); padding:.1em 0 .1em 2ch; margin:1em 0; }
+  .claim span { display:block; text-transform:uppercase; color:var(--muted); }
+  details { margin:.2em 0; } summary { cursor:pointer; text-transform:uppercase; }
+  details p { margin:.4em 0 .8em 2ch; }
   footer { margin-top:3em; color:var(--muted); font-size:13px; }
-  @media (max-width:560px) { .doc { padding:32px 16px 80px; } body { font-size:14px; } .sched td, .sched th { padding-right:1ch; } }
+  @media (max-width:600px) { .doc { padding:32px 16px 80px; } body { font-size:14px; } .live { grid-template-columns:repeat(2,1fr); } table.t td, table.t th { padding-right:1ch; } pre { font-size:11px; } }
 </style>
 </head>
 <body>
 <div class="doc">
 
-<button class="toggle" id="t" type="button">Theme</button>
 <div class="addr">Department of Grid-Side Guarantees<br>Queens, New York</div>
 
 <h1>Certified grid-side behavior for an AI UPS</h1>
-<p>An AI training campus steps its power by 40 MW in an instant, over and over. A battery and inverter between the campus and the grid can hide that. This is a proof that it does: <strong>for every load profile in range</strong>, the grid sees a bounded ramp, the voltage stays in its band, and the battery never saturates or runs empty.</p>
-<p class="muted">Public, assumed-parameter model. Not ON.energy hardware, data or controller.</p>
-<a class="cta" href="paper.pdf">Read the paper ↓</a><a class="cta" href="https://github.com/sehajr-singhs/ai-ups-cert">Code</a>
+<p>An AI training campus can step its power by 40 MW in an instant, over and over. A battery and inverter between the campus and the grid can hide that. This is a proof that it does: <strong>for every load profile in range</strong>, the grid sees a bounded ramp, the feeder voltage never jumps, and the battery never saturates or runs empty.</p>
+<a class="cta" href="paper.pdf">Read the paper ↓</a><a class="cta" href="https://github.com/sehajr-singhs/ai-ups-cert">Code</a><a class="cta" href="#faq">What's assumed</a>
 
-<table class="sched">
+<table class="t">
   <tr><th>Item</th><th>Value</th></tr>
   <tr><td>Campus load</td><td>Any measurable profile in [60, 100] MW, steps allowed</td></tr>
-  <tr><td>Grid ramp limit</td><td>10 MW/min (swept 2 to 40)</td></tr>
-  <tr><td>Proof method</td><td>Interval branch-and-bound, outward rounding: 27,230 boxes, depth 40, 1.4 s</td></tr>
-  <tr><td>Battery needed</td><td>40.28 MW, 2.013 MWh usable (1.43× the lower bound for any controller)</td></tr>
-  <tr><td>Worst voltage</td><td>1.35% deviation against a 5% band, never steps</td></tr>
-  <tr><td>Status</td><td>Proved on a public model. Code tested, not formally verified.</td></tr>
+  <tr><td>Grid ramp limit</td><td>10 MW/min, swept from 2 to 40</td></tr>
+  <tr><td>Proof</td><td>Interval branch-and-bound, outward rounding: 27,230 boxes, depth 40, 1.4 s</td></tr>
+  <tr><td>Battery needed</td><td>40.28 MW and 2.013 MWh usable, 1.43× the minimum for any controller</td></tr>
+  <tr><td>Feeder voltage</td><td>Worst deviation 1.35% against a 5% band. Never steps.</td></tr>
 </table>
 
 <div class="rule"></div>
-<section class="exhibit">
-  <h2>The claim</h2>
-  <div class="sub">Four statements, each proved for every admissible load</div>
-  <div class="claim"><span class="k">Proposition 1 · battery</span><br>The set S, a 32-sided polygon in (grid power, stored energy), is forward invariant. So the battery power stays within 40.28 MW, stored energy within ±1.006 MWh, and grid power within [59.81, 100.19] MW.</div>
-  <div class="claim"><span class="k">Theorem 1 · ramp</span><br>The grid draws exactly P<sub>g</sub>, and P<sub>g</sub> never changes faster than R. The clip does it by construction, but only because Proposition 1 keeps the battery from saturating.</div>
-  <div class="claim"><span class="k">Corollary 1 · voltage</span><br>PCC voltage stays in [0.9865, 0.9927] pu and moves at most 0.165% per minute. The linearization is within 2.94×10⁻³ pu of the exact formula, which matches pandapower AC to 6.7×10⁻¹² pu.</div>
-  <div class="claim"><span class="k">Proposition 2 · lower bound</span><br>Any causal controller holding ramp R needs at least 40 MW and ΔP²/(2ηR) of energy: 1.404 MWh at 10 MW/min.</div>
-</section>
+<h2>Exhibit A: the system</h2>
+<div class="sub">Where the UPS sits, and the four parts of the controller</div>
+<pre>
+  GRID ---- feeder: 10 km, 69 kV ---- PCC ---+------------------------------- AI CAMPUS
+  stiff source                       V(t)   |  Pg = grid power                   PL(t) in [60, 100] MW
+                                            |                                    steps allowed
+                                 +----------+---------------------------------------------+
+                                 | AI UPS        Pb = PL - Pg : the battery covers the gap |
+                                 |                                                         |
+                                 |   PL --> (+) --> [ low-pass, tau = 180 s ] --> [ clip +/-R ] --> Pg
+                                 |           ^                                             |
+                                 |           |   s = clip(ke * (eref - w), +/-10 MW)       |
+                                 |           +-- [charge loop] <-- w = e + tau(Pg-80)/3600 |
+                                 |                                                         |
+                                 |   battery e(t):  de/dt = -phi(Pb)/3600,   eta = 0.95    |
+                                 +---------------------------------------------------------+
+</pre>
+<p>The grid only ever sees P<sub>g</sub>. The low-pass smooths the load, the clip caps its slope at R, and the charge loop slowly pulls the battery back toward the middle so the next burst can't drain it. The proof shows the battery limit is never reached, so the grid really does see exactly P<sub>g</sub>.</p>
 
 <div class="rule"></div>
-<section class="exhibit">
-  <h2>Exhibit A: worst-case loads</h2>
-  <div class="sub">What the campus does, what the grid sees</div>
-  <figure><img src="fig_a_worst_profiles.png" alt="Load and grid power on three worst-case profiles"><figcaption>Campus load (steps) against grid power (bounded ramp) on the three hardest profiles found.</figcaption></figure>
-</section>
+<h2>Exhibit B: live campus</h2>
+<div class="sub">The certified controller, running in your browser on the same equations as the proof</div>
+<div class="ctrl" id="profiles">Load: <button data-p="burst" class="on">Bursts</button><button data-p="ckpt">Checkpoints</button><button data-p="walk">Random walk</button><button data-p="adv">Adversary</button></div>
+<div class="ctrl" id="speeds">[<button id="pause">Pause</button>] Speed <button data-s="10">10x</button><button data-s="60" class="on">60x</button><button data-s="240">240x</button><button data-s="900">900x</button></div>
+<div class="live">
+  <div><span>Time</span><b id="vT">0 s</b></div>
+  <div><span>Campus P<sub>L</sub></span><b id="vL">0</b></div>
+  <div><span>Grid P<sub>g</sub></span><b id="vG">0</b></div>
+  <div><span>Grid ramp</span><b id="vR">0</b></div>
+  <div><span>Battery P<sub>b</sub></span><b id="vB">0</b></div>
+  <div><span>Stored energy</span><b id="vE">0</b></div>
+  <div><span>Voltage dev.</span><b id="vV">0</b></div>
+  <div><span>Inside S</span><b id="vS" class="ok">yes</b></div>
+</div>
+<svg id="plot" viewBox="0 0 860 300" role="img" aria-label="Live plot of campus load, grid power and stored energy"></svg>
+<p class="mut" style="font-size:13px">Thin step line: what the campus draws. Red: what the grid sees. Lower panel: stored energy against its proved window of ±1.006 MWh.</p>
 
 <div class="rule"></div>
-<section class="exhibit">
-  <h2>Exhibit B: the certified set</h2>
-  <div class="sub">32 faces, every one proved by branch-and-bound</div>
-  <figure><img src="fig_b_invariant_set.png" alt="Certified invariant polygon with simulated trajectories inside"><figcaption>The invariant set S in (grid power, stored energy), with simulated trajectories that stay inside. A greedy adversary reached ±1.000 MWh against the certified ±1.006, so the set is close to tight.</figcaption></figure>
-</section>
+<h2>Exhibit C: the certified set</h2>
+<div class="sub">Every state the battery can reach, proved, with the live trajectory inside it</div>
+<div class="ctrl" id="cmp">Compare: <button data-c="0" class="on">Certified only</button><button data-c="1">Add plain ramp limiter</button></div>
+<svg id="phase" viewBox="0 0 860 380" role="img" aria-label="Certified set in the plane of grid power and stored energy"></svg>
+<p class="mut" style="font-size:13px">Black outline: the certified set S, from the proof's own vertices. Red: the live certified trajectory. Gray: a plain ramp limiter with no charge loop on the same load, which leaves S and empties the battery.</p>
 
 <div class="rule"></div>
-<section class="exhibit">
-  <h2>Exhibit C: how big a battery</h2>
-  <div class="sub">Each row re-proved at its own ramp limit</div>
-  <table class="sched">
-    <tr><th>Ramp limit</th><th class="n">Usable energy</th><th class="n">Power</th><th class="n">Lower bound</th></tr>
-    <tr><td>2 MW/min</td><td class="n">10.064 MWh</td><td class="n">40.28 MW</td><td class="n">7.018 MWh</td></tr>
-    <tr><td>5 MW/min</td><td class="n">4.026 MWh</td><td class="n">40.28 MW</td><td class="n">2.807 MWh</td></tr>
-    <tr><td>10 MW/min</td><td class="n">2.013 MWh</td><td class="n">40.28 MW</td><td class="n">1.404 MWh</td></tr>
-    <tr><td>20 MW/min</td><td class="n">1.006 MWh</td><td class="n">40.28 MW</td><td class="n">0.702 MWh</td></tr>
-    <tr><td>40 MW/min</td><td class="n">0.503 MWh</td><td class="n">40.28 MW</td><td class="n">0.351 MWh</td></tr>
-  </table>
-  <figure><img src="fig_c_battery_vs_ramp.png" alt="Certified battery energy versus ramp limit, with the lower bound"><figcaption>Energy scales as 1/R. The certified design stays at 1.43× the bound for any controller.</figcaption></figure>
-</section>
+<h2>Exhibit D: signal trace</h2>
+<div class="sub">What each part says, step by step, on the live run</div>
+<div class="trace" id="trace"></div>
+<p class="mut" style="font-size:13px">CAMPUS ► load events. UPS ► what the battery absorbs. GRID ► what the feeder sees.</p>
 
 <div class="rule"></div>
-<section class="exhibit">
-  <h2>Exhibit D: the feeder voltage</h2>
-  <div class="sub">With and without the UPS</div>
-  <figure><img src="fig_d_pcc_voltage.png" alt="PCC voltage with and without the UPS"><figcaption>On this assumed feeder both stay inside the band. Without the UPS a 40 MW step moves the voltage 1.65% instantly; with it the voltage never steps.</figcaption></figure>
-</section>
+<h2>Exhibit E: the proof</h2>
+<div class="sub">32 faces, each closed by branch-and-bound on a thin band just outside it</div>
+<p>To show S can't be left, it's enough to show the state points inward on a thin band outside each face, for every load in [60, 100] MW. Branch-and-bound splits that band into boxes until interval arithmetic, rounded outward, proves the direction on every box. If it ever finds a box where it can't, it reports a counterexample instead.</p>
+<svg id="faces" viewBox="0 0 860 210" role="img" aria-label="Boxes needed per face"></svg>
+<p class="mut" style="font-size:13px">Boxes needed per face (bars) and deepest split. Total 27,230 boxes, max depth 40, 1.4 s. Separate proofs bound the energy window, the grid power range and the battery power.</p>
 
 <div class="rule"></div>
-<section class="exhibit">
-  <h2>Exhibit E: why each piece is there</h2>
-  <div class="sub">Same battery, 140 burst trains</div>
-  <pre>
-CONTROLLER                              BATTERY EMPTIED      GRID SEES
-no UPS                                  n/a                  <span class="bad">400 MW/s steps</span>
-plain ramp limiter, no charge loop      <span class="bad">60 of 140</span>            <span class="bad">199.9 MW/s after empty</span>
-certified filter, charge loop removed   <span class="warn">7 of 140</span>             ramp limit lost once empty
-certified controller                    <span class="ok">0 of 140</span>             <span class="ok">≤ 10 MW/min, always</span></pre>
-  <figure><img src="fig_e_ablation.png" alt="A plain ramp limiter draining the battery on a burst profile"><figcaption>The fastest failure: period 5 s, duty 0.3, depth 20%. The plain limiter runs empty after 17.2 minutes.</figcaption></figure>
-</section>
+<h2>Exhibit F: how big a battery</h2>
+<div class="sub">Each row re-proved at its own ramp limit</div>
+<pre id="sizing"></pre>
+<p>Energy scales as 1/R. At every ramp limit the certified design sits at 1.43× the minimum any causal controller needs (ΔP²/2ηR, proved separately), and the power at 1.007×.</p>
 
 <div class="rule"></div>
-<section class="exhibit">
-  <h2>What this does not prove</h2>
-  <p>It's a public model with assumed parameters, not anyone's real hardware. It covers the grid-side power and a linearized feeder voltage, not fast inverter dynamics, faults or protection. 16 of 45 designs in the search got no certificate, which is a limit of the search, not a proof that none exists. The branch-and-bound starts from a padded floating-point polygon, and the code is tested, not formally verified.</p>
-</section>
+<h2>Exhibit G: why every piece is there</h2>
+<div class="sub">Same battery, 140 burst trains from the same family</div>
+<pre>
+CONTROLLER                               BATTERY EMPTIED     WHAT THE GRID SEES
+no UPS                                   n/a                 <span class="bad">40 MW steps (400 MW/s)</span>
+plain ramp limiter, no charge loop       <span class="bad">60 of 140</span>           <span class="bad">steps again once empty</span>
+certified filter, charge loop removed    <span class="warn">7 of 140</span>            <span class="warn">ramp limit lost once empty</span>
+certified controller                     <span class="ok">0 of 140</span>            <span class="ok">10 MW/min or less, always</span>
+</pre>
+<p>Fastest failure of the plain limiter: bursts every 5 s, 30% duty, 20% depth. Empty after 17.2 minutes.</p>
+
+<div class="rule"></div>
+<h2 id="faq">Frequently asked questions</h2>
+<details><summary>What does "assumed parameters" mean?</summary><p>Every number in the model is written in one file with a one-line source. The campus range (60 to 100 MW), the 10 MW/min ramp limit, the 95% efficiency and the feeder (10 km, 69 kV, 0.05 + j0.35 Ω/km) are round values I chose to be plausible for a ~100 MW campus. None come from a real site, a utility tariff or ON.energy. The proof holds for these values exactly, and the code reruns it for any others.</p></details>
+<details><summary>Is this ON.energy's product?</summary><p>No. It's a public model of the idea behind an AI UPS, with my own controller. No ON.energy hardware, data or controller is used.</p></details>
+<details><summary>Is it a simulation or a proof?</summary><p>The four claims are proofs: they hold for every load profile in range, not the ones that were simulated. The live exhibits are simulations, shown to make the proof visible.</p></details>
+<details><summary>What doesn't it cover?</summary><p>Fast inverter dynamics, faults and protection, and the real grid behind the feeder. 16 of 45 designs in the search got no certificate, which is a limit of the search, not proof none exists. The branch-and-bound starts from a padded floating-point polygon, and the code is tested, not formally verified.</p></details>
+<details><summary>What's next?</summary><p>Fleets of these on one grid: whether many UPS units can be proved to damp oscillations together and ride through line outages, and what a next-generation unit should look like in hardware.</p></details>
 
 <footer>Sehaj Randhir Singh · Queens High School for the Sciences · <a href="https://sehajr-singhs.github.io">sehajr-singhs.github.io</a></footer>
 </div>
+
 <script>
-  (function(){ var r=document.documentElement, k='theme';
-    try { var s=localStorage.getItem(k); if(s) r.setAttribute('data-theme',s); } catch(e){}
-    document.getElementById('t').onclick=function(){
-      var d=r.getAttribute('data-theme')||(matchMedia('(prefers-color-scheme: dark)').matches?'dark':'light');
-      var n=d==='dark'?'light':'dark'; r.setAttribute('data-theme',n); try{localStorage.setItem(k,n);}catch(e){}
-    };
-  })();
+(function () {
+  // Certified design, from results/certificate.json
+  var R = 10 / 60, TAU = 180, C = 10, KE = 100, EREF = 0, PMID = 80, ETA = 0.95, PMIN = 60, PMAX = 100;
+  var EHI = 1.0063935521105183, PBMAX = 40.284;
+  var VERTS = [[100.181,-1.0062],[91.184,-0.3329],[73.341,0.5592],[60.023,1.0042],[59.819,1.0062],[72.233,0.0772],[82.994,-0.4608],[98.468,-0.9778],[99.523,-0.9996]];
+  var FACES = [201,287,755,3353,1833,2915,779,543,143,193,221,289,227,331,291,215,203,305,807,4115,735,4163,953,1183,189,237,287,351,241,353,299,233];
+  var DEPTH = [29,25,28,34,31,32,29,31,29,26,28,34,28,37,29,29,29,25,28,34,26,40,29,35,29,26,28,34,28,37,29,29];
+  var SIZING = [[2,10.064,40.28,7.018],[5,4.026,40.28,2.807],[10,2.013,40.28,1.404],[20,1.006,40.28,0.702],[40,0.503,40.28,0.351]];
+  // Feeder: V ~ 1 - (r P + x Q)/S, from config (10 km, 0.05 + j0.35 ohm/km, 69 kV, 100 MVA base, unity pf at the grid side)
+  var ZB = 69 * 69 / 100, RPU = 0.5 / ZB;
+  var clip = function (x, a, b) { return Math.max(a, Math.min(b, x)); };
+  var phi = function (p) { return p >= 0 ? p / ETA : p * ETA; };
+  var ns = "http://www.w3.org/2000/svg";
+  function el(tag, attrs, parent) { var e = document.createElementNS(ns, tag); for (var k in attrs) e.setAttribute(k, attrs[k]); if (parent) parent.appendChild(e); return e; }
+
+  // convex hull of the certificate vertices
+  function hull(pts) {
+    pts = pts.slice().sort(function (a, b) { return a[0] - b[0] || a[1] - b[1]; });
+    var cross = function (o, a, b) { return (a[0] - o[0]) * ((b[1] - o[1]) / 2) - ((a[1] - o[1]) / 2) * (b[0] - o[0]); };
+    var lo = [], up = [];
+    pts.forEach(function (p) { while (lo.length >= 2 && cross(lo[lo.length - 2], lo[lo.length - 1], p) <= 0) lo.pop(); lo.push(p); });
+    pts.slice().reverse().forEach(function (p) { while (up.length >= 2 && cross(up[up.length - 2], up[up.length - 1], p) <= 0) up.pop(); up.push(p); });
+    up.pop(); lo.pop(); return lo.concat(up);
+  }
+  var H = hull(VERTS);
+  function inside(pg, e) {
+    for (var i = 0; i < H.length; i++) {
+      var a = H[i], b = H[(i + 1) % H.length];
+      var c = (b[0] - a[0]) * ((e - a[1]) / 2) - ((b[1] - a[1]) / 2) * (pg - a[0]);
+      if (c < -1e-6) return false;
+    }
+    return true;
+  }
+
+  // load profiles
+  var profile = "burst", rngState = 7;
+  function rnd() { rngState = (rngState * 1103515245 + 12345) % 2147483648; return rngState / 2147483648; }
+  var walk = 80, holdT = 0;
+  function load(t) {
+    if (profile === "burst") { var per = 30, f = (t % per) / per; return f < 0.6 ? 100 : 72; }
+    if (profile === "ckpt") { var m = t % 600; return m > 300 && m < 360 ? 60 : 100; }
+    if (profile === "walk") { if (t >= holdT) { holdT = t + 1; walk = rnd() < 0.02 ? (rnd() < 0.5 ? PMIN : PMAX) : clip(walk + 1.5 * (rnd() * 2 - 1) * 1.7, PMIN, PMAX); } return walk; }
+    // adversary: push the stored energy toward the edge of its window
+    return certified.e > 0 ? 60 : 100;
+  }
+
+  function make() { return { pg: 80, e: 0 }; }
+  var certified = make(), naive = make(), t = 0, last = 80, lastPg = 80;
+  function stepCert(s, pl, dt) {
+    var w = s.e + TAU * (s.pg - PMID) / 3600;
+    var sc = clip(KE * (EREF - w), -C, C);
+    var dpg = clip((pl + sc - s.pg) / TAU, -R, R);
+    var pb = clip(pl - s.pg, -PBMAX, PBMAX);
+    s.pg += dpg * dt; s.e -= phi(pb) / 3600 * dt; s.rate = dpg; s.pb = pb;
+  }
+  function stepNaive(s, pl, dt) {
+    var dpg = clip((pl - s.pg) / 1.0, -R, R);
+    var empty = Math.abs(s.e) >= EHI;
+    var pb = empty ? 0 : clip(pl - s.pg, -PBMAX, PBMAX);
+    if (empty) s.pg = pl; else s.pg += dpg * dt;
+    s.e = clip(s.e - phi(pb) / 3600 * dt, -EHI, EHI);
+  }
+
+  // plot buffers
+  var N = 600, bufL = [], bufG = [], bufE = [], trailC = [], trailN = [];
+  var plot = document.getElementById("plot"), phase = document.getElementById("phase");
+  var X0 = 50, X1 = 850, Y0 = 10, Y1 = 180, E0 = 205, E1 = 290;
+  function axes() {
+    plot.innerHTML = "";
+    el("rect", { x: X0, y: Y0, width: X1 - X0, height: Y1 - Y0, fill: "none", stroke: "#c9c9c9" }, plot);
+    el("rect", { x: X0, y: E0, width: X1 - X0, height: E1 - E0, fill: "none", stroke: "#c9c9c9" }, plot);
+    [60, 80, 100].forEach(function (v) { var y = Y1 - (v - 55) / 50 * (Y1 - Y0); el("text", { x: X0 - 6, y: y + 4, "text-anchor": "end" }, plot).textContent = v; });
+    el("text", { x: X0 - 6, y: E0 + 8, "text-anchor": "end" }, plot).textContent = "+1";
+    el("text", { x: X0 - 6, y: E1, "text-anchor": "end" }, plot).textContent = "−1";
+    el("text", { x: X1, y: Y0 - 2, "text-anchor": "end" }, plot).textContent = "MW";
+    el("text", { x: X1, y: E0 - 4, "text-anchor": "end" }, plot).textContent = "MWh";
+    plot._l = el("polyline", { fill: "none", stroke: "#111", "stroke-width": 1 }, plot);
+    plot._g = el("polyline", { fill: "none", stroke: "#d0141e", "stroke-width": 2 }, plot);
+    plot._e = el("polyline", { fill: "none", stroke: "#111", "stroke-width": 1.5 }, plot);
+  }
+  axes();
+  // phase plane
+  var PX0 = 60, PX1 = 840, PY0 = 20, PY1 = 340;
+  var px = function (pg) { return PX0 + (pg - 56) / 48 * (PX1 - PX0); };
+  var py = function (e) { return PY1 - (e + 1.3) / 2.6 * (PY1 - PY0); };
+  function phaseAxes() {
+    phase.innerHTML = "";
+    el("rect", { x: PX0, y: PY0, width: PX1 - PX0, height: PY1 - PY0, fill: "none", stroke: "#c9c9c9" }, phase);
+    [60, 70, 80, 90, 100].forEach(function (v) { el("text", { x: px(v), y: PY1 + 16, "text-anchor": "middle" }, phase).textContent = v; });
+    [-1, 0, 1].forEach(function (v) { el("text", { x: PX0 - 6, y: py(v) + 4, "text-anchor": "end" }, phase).textContent = v; });
+    el("text", { x: PX1, y: PY1 + 32, "text-anchor": "end" }, phase).textContent = "grid power Pg (MW)";
+    el("text", { x: PX0, y: PY0 - 6 }, phase).textContent = "stored energy e (MWh)";
+    el("polygon", { points: H.map(function (p) { return px(p[0]) + "," + py(p[1]); }).join(" "), fill: "rgba(17,17,17,.04)", stroke: "#111", "stroke-width": 1.5 }, phase);
+    el("text", { x: px(66), y: py(1.05) - 6 }, phase).textContent = "S, certified";
+    phase._n = el("polyline", { fill: "none", stroke: "#8a8a8a", "stroke-width": 1.2 }, phase);
+    phase._c = el("polyline", { fill: "none", stroke: "#d0141e", "stroke-width": 1.5 }, phase);
+    phase._dot = el("circle", { r: 5, fill: "#d0141e" }, phase);
+  }
+  phaseAxes();
+  var compare = false;
+
+  // trace
+  var traceEl = document.getElementById("trace"), lines = [];
+  function log(s) { lines.push(s); if (lines.length > 9) lines.shift(); traceEl.innerHTML = lines.map(function (l) { return "<div>" + l + "</div>"; }).join(""); }
+  function f1(x) { return x.toFixed(1); }
+  function ts(x) { var m = Math.floor(x / 60), s = Math.floor(x % 60); return "+" + (m < 10 ? "0" : "") + m + ":" + (s < 10 ? "0" : "") + s; }
+
+  var speed = 60, paused = false, acc = 0, lastNow = null, nextLog = 0;
+  function tick(now) {
+    if (lastNow === null) lastNow = now;
+    var real = Math.min(0.1, (now - lastNow) / 1000); lastNow = now;
+    if (!paused) {
+      var simT = real * speed, dt = 0.1;
+      for (var k = 0; k < simT / dt; k++) {
+        var pl = load(t);
+        if (Math.abs(pl - last) > 5) { log(ts(t) + "  CAMPUS ► load " + f1(last) + " → " + f1(pl) + " MW"); }
+        last = pl;
+        stepCert(certified, pl, dt);
+        if (compare) stepNaive(naive, pl, dt);
+        t += dt;
+        if (t >= nextLog) {
+          nextLog = t + 20;
+          log(ts(t) + "  UPS    ► battery " + (certified.pb >= 0 ? "gives " : "takes ") + f1(Math.abs(certified.pb)) + " MW, stored " + certified.e.toFixed(3) + " MWh");
+          log(ts(t) + "  GRID   ► sees " + f1(certified.pg) + " MW, ramping " + (certified.rate * 60).toFixed(2) + " MW/min");
+        }
+        if (Math.round(t * 10) % 10 === 0) {
+          bufL.push(pl); bufG.push(certified.pg); bufE.push(certified.e);
+          if (bufL.length > N) { bufL.shift(); bufG.shift(); bufE.shift(); }
+          trailC.push([certified.pg, certified.e]); if (trailC.length > 1500) trailC.shift();
+          if (compare) { trailN.push([naive.pg, naive.e]); if (trailN.length > 1500) trailN.shift(); }
+        }
+      }
+      draw(load(t));
+    }
+    requestAnimationFrame(tick);
+  }
+  function series(buf, lo, hi, yTop, yBot, step) {
+    var dx = (X1 - X0) / N, out = [];
+    for (var i = 0; i < buf.length; i++) {
+      var x = X0 + i * dx, y = yBot - (buf[i] - lo) / (hi - lo) * (yBot - yTop);
+      if (step && i > 0) { var yp = yBot - (buf[i - 1] - lo) / (hi - lo) * (yBot - yTop); out.push(x + "," + yp); }
+      out.push(x + "," + y);
+    }
+    return out.join(" ");
+  }
+  function draw(pl) {
+    plot._l.setAttribute("points", series(bufL, 55, 105, Y0, Y1, true));
+    plot._g.setAttribute("points", series(bufG, 55, 105, Y0, Y1, false));
+    plot._e.setAttribute("points", series(bufE, -1.1, 1.1, E0, E1, false));
+    phase._c.setAttribute("points", trailC.map(function (p) { return px(p[0]) + "," + py(p[1]); }).join(" "));
+    phase._n.setAttribute("points", compare ? trailN.map(function (p) { return px(p[0]) + "," + py(p[1]); }).join(" ") : "");
+    phase._dot.setAttribute("cx", px(certified.pg)); phase._dot.setAttribute("cy", py(certified.e));
+    document.getElementById("vT").textContent = Math.floor(t) + " s";
+    document.getElementById("vL").textContent = f1(pl) + " MW";
+    document.getElementById("vG").textContent = certified.pg.toFixed(2) + " MW";
+    document.getElementById("vR").textContent = (certified.rate * 60).toFixed(2) + " MW/min";
+    document.getElementById("vB").textContent = f1(certified.pb || 0) + " MW";
+    document.getElementById("vE").textContent = certified.e.toFixed(3) + " MWh";
+    document.getElementById("vV").textContent = "≈" + (RPU * certified.pg).toFixed(2) + "%";
+    var ins = inside(certified.pg, certified.e), s = document.getElementById("vS");
+    s.textContent = ins ? "yes" : "no"; s.className = ins ? "ok" : "bad";
+  }
+  function reset() { certified = make(); naive = make(); t = 0; last = 80; bufL = []; bufG = []; bufE = []; trailC = []; trailN = []; lines = []; nextLog = 0; walk = 80; holdT = 0; rngState = 7; traceEl.innerHTML = ""; }
+
+  document.querySelectorAll("#profiles button").forEach(function (b) { b.onclick = function () { document.querySelectorAll("#profiles button").forEach(function (x) { x.classList.remove("on"); }); b.classList.add("on"); profile = b.dataset.p; reset(); }; });
+  document.querySelectorAll("#speeds button[data-s]").forEach(function (b) { b.onclick = function () { document.querySelectorAll("#speeds button[data-s]").forEach(function (x) { x.classList.remove("on"); }); b.classList.add("on"); speed = +b.dataset.s; }; });
+  document.getElementById("pause").onclick = function () { paused = !paused; this.textContent = paused ? "Play" : "Pause"; };
+  document.querySelectorAll("#cmp button").forEach(function (b) { b.onclick = function () { document.querySelectorAll("#cmp button").forEach(function (x) { x.classList.remove("on"); }); b.classList.add("on"); compare = b.dataset.c === "1"; reset(); }; });
+
+  // faces chart
+  var fs = document.getElementById("faces"), maxB = Math.max.apply(null, FACES);
+  FACES.forEach(function (b, i) {
+    var w = 800 / 32, x = 50 + i * w, h = Math.sqrt(b / maxB) * 150;
+    el("rect", { x: x + 2, y: 170 - h, width: w - 4, height: h, fill: DEPTH[i] >= 37 ? "#d0141e" : "#111" }, fs);
+    if (i % 4 === 0) el("text", { x: x + w / 2, y: 186, "text-anchor": "middle" }, fs).textContent = i;
+  });
+  el("text", { x: 50, y: 204 }, fs).textContent = "face 0 to 31   bar height ~ sqrt(boxes)   red: split depth 37 or more";
+  el("text", { x: 850, y: 14, "text-anchor": "end" }, fs).textContent = "max " + maxB + " boxes";
+
+  // sizing table with text bars
+  var out = "RAMP LIMIT    USABLE ENERGY            POWER      LOWER BOUND\n";
+  SIZING.forEach(function (r) {
+    var bar = new Array(Math.round(r[1] / 10.064 * 22) + 1).join("#");
+    out += (r[0] + " MW/min").padEnd(14) + (r[1].toFixed(3) + " MWh ").padEnd(11) + bar.padEnd(23) + (r[2].toFixed(2) + " MW").padEnd(11) + r[3].toFixed(3) + " MWh\n";
+  });
+  document.getElementById("sizing").textContent = out;
+
+  requestAnimationFrame(tick);
+})();
 </script>
 </body>
 </html>
